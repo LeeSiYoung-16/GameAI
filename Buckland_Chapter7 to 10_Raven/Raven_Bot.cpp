@@ -35,19 +35,23 @@ Raven_Bot::Raven_Bot(Raven_Game* world,Vector2D pos):
                script->GetDouble("Bot_MaxHeadTurnRate"),
                script->GetDouble("Bot_MaxForce")),
                  
-                 m_iMaxHealth(script->GetInt("Bot_MaxHealth")),
-                 m_iHealth(script->GetInt("Bot_MaxHealth")),
-                 m_pPathPlanner(NULL),
-                 m_pSteering(NULL),
-                 m_pWorld(world),
-                 m_pBrain(NULL),
-                 m_iNumUpdatesHitPersistant((int)(FrameRate * script->GetDouble("HitFlashTime"))),
-                 m_bHit(false),
-                 m_iScore(0),
-                 m_Status(spawning),
-                 m_bPossessed(false),
-                 m_dFieldOfView(DegsToRads(script->GetDouble("Bot_FOV")))
-           
+                m_iMaxHealth(script->GetInt("Bot_MaxHealth")),
+                m_iHealth(script->GetInt("Bot_MaxHealth")),
+                m_iDefense(script->GetInt("Bot_Defense")),                // 추가
+                m_iMaxDefense(script->GetInt("Bot_MaxDefense")),                // 추가
+                m_pPathPlanner(NULL),
+                m_pSteering(NULL),
+                m_pWorld(world),
+                m_pBrain(NULL),
+                m_iNumUpdatesHitPersistant((int)(FrameRate* script->GetDouble("HitFlashTime"))),
+                m_bHit(false),
+                m_iNumUpdatesDefensePersistant((int)(FrameRate* script->GetDouble("DefenseFlashTime"))),    // 추가
+                m_bIsDefense(false),       // 추가
+                m_iScore(0),
+                m_Status(spawning),
+                m_bPossessed(false),
+                m_dFieldOfView(DegsToRads(script->GetDouble("Bot_FOV")))
+
 {
   SetEntityType(type_bot);
 
@@ -229,7 +233,8 @@ bool Raven_Bot::HandleMessage(const Telegram& msg)
     if (isDead() || isSpawning()) return true;
 
     //the extra info field of the telegram carries the amount of damage
-    ReduceHealth(DereferenceToType<int>(msg.ExtraInfo));
+    if (!m_bIsDefense)
+        ReduceHealth(DereferenceToType<int>(msg.ExtraInfo));
 
     //if this bot is now dead let the shooter know
     if (isDead())
@@ -486,7 +491,7 @@ void Raven_Bot::Render()
   //circle drawn around it (to indicate it's been hit) The circle is drawn
   //as long as this value is positive. (see Render)
   m_iNumUpdatesHitPersistant--;
-
+  m_iNumUpdatesDefensePersistant--;     // 과제 3 추가
 
   if (isDead() || isSpawning()) return;
   
@@ -509,16 +514,31 @@ void Raven_Bot::Render()
   m_pWeaponSys->RenderCurrentWeapon();
 
   //render a thick red circle if the bot gets hit by a weapon
-  if (m_bHit)
+  // 과제 3 추가
+  if (m_bHit && !m_bIsDefense)
   {
-    gdi->ThickRedPen();
-    gdi->HollowBrush();
-    gdi->Circle(m_vPosition, BRadius()+1);
+      gdi->ThickRedPen();
+      gdi->HollowBrush();
+      gdi->Circle(m_vPosition, BRadius() + 1);
 
-    if (m_iNumUpdatesHitPersistant <= 0)
-    {
-      m_bHit = false;
-    }
+      if (m_iNumUpdatesHitPersistant <= 0)
+      {
+          m_bHit = false;
+      }
+  }
+  else if (m_bIsDefense)        
+  {
+      gdi->ThickBluePen();
+      gdi->HollowBrush();
+      gdi->Circle(m_vPosition, BRadius() + 3);
+      gdi->BluePen();
+      gdi->HollowBrush();
+      gdi->Circle(m_vPosition, BRadius());
+      if (m_iNumUpdatesDefensePersistant <= 0)
+      {
+          m_iDefense = script->GetInt("Bot_Defense");
+          m_bIsDefense = false;;
+      }
   }
 
   gdi->TransparentText();
@@ -537,7 +557,10 @@ void Raven_Bot::Render()
   if (UserOptions->m_bShowScore)
   {
     gdi->TextAtPos(Pos().x-40, Pos().y+10, "Scr:"+ ttos(Score()));
-  }    
+  }   
+
+  // 과제 3 추가
+  gdi->TextAtPos(Pos().x - 40, Pos().y + 22, "DF:" + ttos(Defense()));     // 추가
 }
 
 //------------------------- SetUpVertexBuffer ---------------------------------
@@ -575,6 +598,16 @@ void Raven_Bot::SetUpVertexBuffer()
 
 
 void Raven_Bot::RestoreHealthToMaximum(){m_iHealth = m_iMaxHealth;}
+
+void Raven_Bot::IncreaseDefense()
+{
+    m_iDefense = m_iMaxDefense;
+
+    m_bHit = false;
+    m_bIsDefense = true;
+
+    m_iNumUpdatesDefensePersistant = (int)(FrameRate * script->GetDouble("DefenseFlashTime"));
+}
 
 void Raven_Bot::IncreaseHealth(unsigned int val)
 {

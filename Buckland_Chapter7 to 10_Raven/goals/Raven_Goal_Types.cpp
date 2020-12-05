@@ -83,6 +83,11 @@ std::string GoalTypeToString::Convert(int gt)
 
     return "say_phrase";
 
+   // 과제 3 추가
+  case goal_get_defense:
+
+      return "get_defense"; 
+
   default:
 
     return "UNKNOWN GOAL TYPE!";

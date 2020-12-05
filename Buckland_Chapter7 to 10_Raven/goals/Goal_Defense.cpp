@@ -1,4 +1,4 @@
-#include "Goal_GetItem.h"
+#include "Goal_Defense.h"
 #include "../Raven_ObjectEnumerations.h"
 #include "../Raven_Bot.h"
 #include "../navigation/Raven_PathPlanner.h"
@@ -10,45 +10,17 @@
 #include "Goal_FollowPath.h"
 
 
-int ItemTypeToGoalType(int gt)
-{
-  switch(gt)
-  {
-  case type_health:
-
-    return goal_get_health;
-
-  case type_shotgun:
-
-    return goal_get_shotgun;
-
-  case type_rail_gun:
-
-    return goal_get_railgun;
-
-  case type_rocket_launcher:
-
-    return goal_get_rocket_launcher;
-
-  case type_defense:
-
-      return goal_get_defense;      // 과제 3 추가
-
-  default: throw std::runtime_error("Goal_GetItem cannot determine item type");
-
-  }//end switch
-}
 
 //------------------------------- Activate ------------------------------------
 //-----------------------------------------------------------------------------
-void Goal_GetItem::Activate()
+void Goal_Defense::Activate()
 {
   m_iStatus = active;
   
   m_pGiverTrigger = 0;
   
   //request a path to the item
-  m_pOwner->GetPathPlanner()->RequestPathToItem(m_iItemToGet);
+  m_pOwner->GetPathPlanner()->RequestPathToItem(goal_get_defense);
 
   //the bot may have to wait a few update cycles before a path is calculated
   //so for appearances sake it just wanders
@@ -58,7 +30,7 @@ void Goal_GetItem::Activate()
 
 //-------------------------- Process ------------------------------------------
 //-----------------------------------------------------------------------------
-int Goal_GetItem::Process()
+int Goal_Defense::Process()
 {
   ActivateIfInactive();
 
@@ -77,7 +49,7 @@ int Goal_GetItem::Process()
 }
 //---------------------------- HandleMessage ----------------------------------
 //-----------------------------------------------------------------------------
-bool Goal_GetItem::HandleMessage(const Telegram& msg)
+bool Goal_Defense::HandleMessage(const Telegram& msg)
 {
   //first, pass the message down the goal hierarchy
   bool bHandled = ForwardMessageToFrontMostSubgoal(msg);
@@ -120,7 +92,7 @@ bool Goal_GetItem::HandleMessage(const Telegram& msg)
 //  returns true if the bot sees that the item it is heading for has been
 //  picked up by an opponent
 //-----------------------------------------------------------------------------
-bool Goal_GetItem::hasItemBeenStolen()const
+bool Goal_Defense::hasItemBeenStolen()const
 {
   if (m_pGiverTrigger &&
       !m_pGiverTrigger->isActive() &&

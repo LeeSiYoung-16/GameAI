@@ -80,6 +80,12 @@ private:
   //the bot's maximum health value. It starts its life with health at this value
   int                                m_iMaxHealth;
 
+  // 과제 3 추가
+  int                                m_iDefense;
+  int                                m_iMaxDefense;
+  bool                               m_bIsDefense;
+  int                                m_iNumUpdatesDefensePersistant;        // 추가
+
   //each time this bot kills another this value is incremented
   int                                m_iScore;
   
@@ -134,6 +140,9 @@ public:
   void         Write(std::ostream&  os)const{/*not implemented*/}
   void         Read (std::ifstream& is){/*not implemented*/}
 
+  // 과제 3 추가
+  bool         Get_IsDefense() { return m_bIsDefense; }
+
   //this rotates the bot's heading until it is facing directly at the target
   //position. Returns false if not facing at the target.
   bool          RotateFacingTowardPosition(Vector2D target);
@@ -141,9 +150,15 @@ public:
   //methods for accessing attribute data
   int           Health()const{return m_iHealth;}
   int           MaxHealth()const{return m_iMaxHealth;}
+  int           Defense()const { return m_iDefense; }     // 과제 3 추가
+  int           MaxDefense()const { return m_iMaxDefense; }     // 과제 3 추가
+
   void          ReduceHealth(unsigned int val);
   void          IncreaseHealth(unsigned int val);
   void          RestoreHealthToMaximum();
+
+  //////////// 과제 3 추가
+  void          IncreaseDefense();
 
   int           Score()const{return m_iScore;}
   void          IncrementScore(){++m_iScore;}
@@ -159,6 +174,10 @@ public:
   void          SetSpawning(){m_Status = spawning;}
   void          SetDead(){m_Status = dead;}
   void          SetAlive(){m_Status = alive;}
+
+  /////////////////////////// 과제 3추가
+  void          SetDefense(bool bIsDefense) { m_bIsDefense = bIsDefense; }
+
 
   //returns a value indicating the time in seconds it will take the bot
   //to reach the given position at its current speed.

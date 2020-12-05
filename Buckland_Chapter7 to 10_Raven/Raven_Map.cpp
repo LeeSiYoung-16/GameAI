@@ -11,7 +11,7 @@
 #include "triggers/Trigger_WeaponGiver.h"
 #include "triggers/Trigger_OnButtonSendMsg.h"
 #include "triggers/Trigger_SoundNotify.h"
-
+#include "triggers/Trigger_DefenseGiver.h" 
 #include "Raven_UserOptions.h"
 
 
@@ -111,6 +111,22 @@ void Raven_Map::AddDoorTrigger(std::ifstream& in)
   //register the entity 
   EntityMgr->RegisterEntity(tr);
   
+}
+
+// 과제 3 추가
+void Raven_Map::AddDefense_Giver(std::ifstream& in)
+{
+    Trigger_DefenseGiver* dg = new Trigger_DefenseGiver(in);
+
+    m_TriggerSystem.Register(dg);
+
+    //let the corresponding navgraph node point to this object
+    NavGraph::NodeType& node = m_pNavGraph->GetNode(dg->GraphNodeIndex());
+
+    node.SetExtraInfo(dg);
+
+    //register the entity 
+    EntityMgr->RegisterEntity(dg);
 }
 
 
@@ -262,9 +278,19 @@ bool Raven_Map::LoadMap(const std::string& filename)
        AddSpawnPoint(in); break;
 
    case type_health:
-     
-       AddHealth_Giver(in); break;
-
+   {
+       // 과제 3 추가
+       int iRand = rand() % 2;
+       if (iRand == 0)
+       {
+           AddDefense_Giver(in);
+       }
+       else if (iRand == 1)
+       {
+           AddHealth_Giver(in);
+       }
+       break;
+   }
    case type_shotgun:
      
        AddWeapon_Giver(type_shotgun, in); break;

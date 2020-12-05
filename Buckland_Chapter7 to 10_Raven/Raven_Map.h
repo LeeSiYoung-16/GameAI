@@ -85,6 +85,8 @@ private:
   void AddDoor(std::ifstream& in);
   void AddDoorTrigger(std::ifstream& in);
 
+  void AddDefense_Giver(std::ifstream& in);      // 과제 3 추가
+
   void Clear();
   
 public:

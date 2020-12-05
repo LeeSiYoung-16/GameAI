@@ -253,9 +253,6 @@
     <ClCompile Include="..\Common\Time\CrudeTimer.cpp">
       <Filter>Common</Filter>
     </ClCompile>
-    <ClCompile Include="..\Common\Debug\DebugConsole.cpp">
-      <Filter>Common</Filter>
-    </ClCompile>
     <ClCompile Include="..\Common\misc\FrameCounter.cpp">
       <Filter>Common</Filter>
     </ClCompile>
@@ -267,6 +264,18 @@
     </ClCompile>
     <ClCompile Include="..\Common\misc\WindowUtils.cpp">
       <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="goals\GetDefenseGoal_Evaluator.cpp">
+      <Filter>AI\goals\goal evaluation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Common\Debug\DebugConsole.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="triggers\Trigger_DefenseGiver.cpp">
+      <Filter>AI\Triggers</Filter>
+    </ClCompile>
+    <ClCompile Include="goals\Goal_Defense.cpp">
+      <Filter>AI\goals\composite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -561,9 +570,6 @@
     <ClInclude Include="..\Common\Time\CrudeTimer.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="..\Common\Debug\DebugConsole.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="..\Common\misc\FrameCounter.h">
       <Filter>Common</Filter>
     </ClInclude>
@@ -605,6 +611,18 @@
     </ClInclude>
     <ClInclude Include="..\Common\misc\WindowUtils.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="goals\GetDefenseGoal_Evaluator.h">
+      <Filter>AI\goals\goal evaluation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\Debug\DebugConsole.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="triggers\Trigger_DefenseGiver.h">
+      <Filter>AI\Triggers</Filter>
+    </ClInclude>
+    <ClInclude Include="goals\Goal_Defense.h">
+      <Filter>AI\goals\composite</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

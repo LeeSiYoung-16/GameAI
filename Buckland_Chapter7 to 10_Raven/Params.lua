@@ -25,6 +25,8 @@ GraveLifetime = 5
 -------------------------------------------------------------------------------
 
 Bot_MaxHealth = 100
+Bot_Defense = 0
+Bot_MaxDefense = 100
 Bot_MaxSpeed  = 1
 Bot_Mass      = 1
 Bot_MaxForce  = 1.0
@@ -71,6 +73,9 @@ Bot_AimAccuracy = 0.0
 --how long a flash is displayed when the bot is hit
 HitFlashTime = 0.2
 
+-- 추가
+DefenseFlashTime = 3
+
 --how long (in seconds) a bot's sensory memory persists
 Bot_MemorySpan = 5
 
@@ -80,7 +85,7 @@ Bot_ShotgunGoalTweaker    = 1.0
 Bot_RailgunGoalTweaker    = 1.0
 Bot_RocketLauncherTweaker = 1.0
 Bot_AggroGoalTweaker      = 1.0
-
+Bot_DefenseGoalTweaker    = 1.0 -- 추가
 
 -------------------------[[ steering parameters ]]-----------------------------
 -------------------------------------------------------------------------------
@@ -113,7 +118,7 @@ DefaultGiverTriggerRange = 10
 --how many seconds before a giver-trigger reactivates itself
 Health_RespawnDelay  = 10
 Weapon_RespawnDelay  = 15
-
+Defense_RespawnDelay = 20 ---- 추가
 
 
 -------------------------[[ weapon parameters ]]-------------------------------

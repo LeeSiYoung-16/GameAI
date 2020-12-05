@@ -18,7 +18,9 @@ enum
   type_blaster,
   type_obstacle,
   type_sliding_door,
-  type_door_trigger
+  type_door_trigger,
+
+  type_defense      // 과제3 추가
 };
 
 
