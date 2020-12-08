@@ -92,7 +92,7 @@ void Rocket::TestForImpact()
       ht->damage = m_iDamageInflicted;
       ht->target = hit;
 
-      Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY, hit->ID(), m_iShooterID, Msg_TargetHit, ht);
+      Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY, hit->ID(), m_iShooterID, Msg_TargetHit, ht); // Ãß°¡
 
       //test for bots within the blast radius and inflict damage
       InflictDamageOnBotsWithinBlastRadius();

@@ -38,6 +38,7 @@ void Raven_SensoryMemory::RemoveBotFromMemory(Raven_Bot* pBot)
   }
 }
 
+// Ãß°¡
 void Raven_SensoryMemory::UpdateWithTargetDamage(HitTargetData* pTarget)
 {
     Raven_Bot* targetBot = pTarget->target;

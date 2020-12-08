@@ -108,7 +108,7 @@ void Pellet::TestForImpact()
   ht->damage = m_iDamageInflicted;
   ht->target = hit;
 
-  Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY, hit->ID(), m_iShooterID, Msg_TargetHit, ht);
+  Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY, hit->ID(), m_iShooterID, Msg_TargetHit, ht); // Ãß°¡
 }
 
 //-------------------------- Render -------------------------------------------

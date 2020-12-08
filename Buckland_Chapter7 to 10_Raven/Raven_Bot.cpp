@@ -280,6 +280,7 @@ bool Raven_Bot::HandleMessage(const Telegram& msg)
       return true;
     }
 
+    // Ãß°¡ 
   case Msg_TargetHit:
       
       GetSensoryMem()->UpdateWithTargetDamage((HitTargetData*)msg.ExtraInfo);

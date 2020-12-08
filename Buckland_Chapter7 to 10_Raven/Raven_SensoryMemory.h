@@ -48,6 +48,7 @@ public:
   //permitting a shot.
   bool        bShootable;
   
+  // Ãß°¡
   int iLastDamageByEnemy;
 
   MemoryRecord():fTimeLastSensed(-999),

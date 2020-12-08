@@ -110,9 +110,9 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\M\Desktop\Buckland\VS2010\Common\lua-5.1.3\include;C:\Users\M\Desktop\Buckland\VS2010\Common;$(IncludePath)</IncludePath>
-    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\user\Documents\GitHub\GameAI\Common;C:\Users\user\Documents\GitHub\GameAI\Common\lua-5.1.3\include;$(IncludePath)</IncludePath>
+    <IncludePath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\M\Desktop\ai\GameAI\Common\lua-5.1.3\include;C:\Users\M\Desktop\ai\GameAI\Common;$(IncludePath)</IncludePath>
     <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">C:\Users\M\Desktop\Buckland\VS2010\Common\lua-5.1.3;$(LibraryPath)</LibraryPath>
-    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\user\Documents\GitHub\GameAI\Common\lua-5.1.3;$(LibraryPath)</LibraryPath>
+    <LibraryPath Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\M\Desktop\ai\GameAI\Common\lua-5.1.3;$(LibraryPath)</LibraryPath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='boundschecker|Win32'">D:\code\AI Source\LATEST vc6-vc10\VS2010\Common;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='boundschecker|x64'">C:\Users\user\Documents\GitHub\GameAI\Common;C:\Users\user\Documents\GitHub\GameAI\Common\lua-5.1.3\include;$(IncludePath)</IncludePath>
     <IncludePath Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\code\AI Source\LATEST vc6-vc10\VS2010\Common;$(IncludePath)</IncludePath>
@@ -298,7 +298,7 @@
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalIncludeDirectories>C:\Users\user\Documents\GitHub\GameAI\Common;C:\Users\user\Documents\GitHub\GameAI\Common\lua-5.1.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\M\Desktop\ai\GameAI\Common;C:\Users\M\Desktop\ai\GameAI\Common\lua-5.1.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <ResourceCompile>
@@ -306,7 +306,7 @@
       <Culture>0x0809</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>C:\Users\user\Documents\GitHub\GameAI\Buckland_Chapter7 to 10_Raven\x64\Debug\Raven.exe</OutputFile>
+      <OutputFile>C:\Users\M\Desktop\ai\GameAI\Buckland_Chapter7 to 10_Raven\x64\Debug\Raven.exe</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <IgnoreSpecificDefaultLibraries>libcmt;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -315,7 +315,7 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention>
       </DataExecutionPrevention>
-      <AdditionalLibraryDirectories>C:\Users\user\Documents\GitHub\GameAI\Common\lua-5.1.3</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\M\Desktop\ai\GameAI\Common\lua-5.1.3</AdditionalLibraryDirectories>
       <AdditionalDependencies>lua54.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Bscmake>
