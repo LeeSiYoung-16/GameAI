@@ -186,45 +186,47 @@ int Graph_SearchAStar_TS<graph_type, heuristic>::CycleOnce()
 
   //now to test all the edges attached to this node
   graph_type::ConstEdgeIterator ConstEdgeItr(m_Graph, NextClosestNode);
-  for (const Edge* pE=ConstEdgeItr.begin();
+  for (const Edge* pE = ConstEdgeItr.begin();
       !ConstEdgeItr.end();
-       pE=ConstEdgeItr.next())
+      pE = ConstEdgeItr.next())
   {
-    //calculate the heuristic cost from this node to the target (H)                       
-    double HCost = heuristic::Calculate(m_Graph, m_iTarget, pE->To()); 
+      //calculate the heuristic cost from this node to the target (H)                       
+      double HCost = heuristic::Calculate(m_Graph, m_iTarget, pE->To());
 
-    //calculate the 'real' cost to this node from the source (G)
-    double GCost = m_GCosts[NextClosestNode] + pE->Cost();
+      //calculate the 'real' cost to this node from the source (G)
+      double GCost = m_GCosts[NextClosestNode] + pE->Cost();
 
-    //if the node has not been added to the frontier, add it and update
-    //the G and F costs
-    if (m_SearchFrontier[pE->To()] == NULL)
-    {
-      m_FCosts[pE->To()] = GCost + HCost;
-      m_GCosts[pE->To()] = GCost;
+      //if the node has not been added to the frontier, add it and update
+      //the G and F costs
+      if (m_SearchFrontier[pE->To()] == NULL)
+      {
+          m_FCosts[pE->To()] = GCost + HCost;
+          m_GCosts[pE->To()] = GCost;
 
-      m_pPQ->insert(pE->To());
+          m_pPQ->insert(pE->To());
 
-      m_SearchFrontier[pE->To()] = pE;
-    }
+          m_SearchFrontier[pE->To()] = pE;
+      }
 
-    //if this node is already on the frontier but the cost to get here
-    //is cheaper than has been found previously, update the node
-    //costs and frontier accordingly.
-    else if ((GCost < m_GCosts[pE->To()]) && (m_ShortestPathTree[pE->To()]==NULL))
-    {
-      m_FCosts[pE->To()] = GCost + HCost;
-      m_GCosts[pE->To()] = GCost;
+      //if this node is already on the frontier but the cost to get here
+      //is cheaper than has been found previously, update the node
+      //costs and frontier accordingly.
+      else if ((GCost < m_GCosts[pE->To()]) && (m_ShortestPathTree[pE->To()] == NULL))
+      {
+          m_FCosts[pE->To()] = GCost + HCost;
+          m_GCosts[pE->To()] = GCost;
 
-      m_pPQ->ChangePriority(pE->To());
+          m_pPQ->ChangePriority(pE->To());
 
-      m_SearchFrontier[pE->To()] = pE;
-    }
+          m_SearchFrontier[pE->To()] = pE;
+      }
 
-    if (m_Numcycle > 5)
-        return partial_path;
+      if (m_Numcycle > 5)
+      {
+          m_Numcycle = 0;
+          return partial_path;
+      }
   }
-  
   //there are still nodes to explore
   return search_incomplete;
 }

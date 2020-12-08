@@ -60,6 +60,16 @@ bool Goal_MoveToPosition::HandleMessage(const Telegram& msg)
   {
     switch(msg.Msg)
     {
+    case Msg_PartialPath:         // Ãß°¡
+
+        //clear any existing goals
+        RemoveAllSubgoals();
+
+        AddSubgoal(new Goal_FollowPath(m_pOwner,
+            m_pOwner->GetPathPlanner()->GetPath()));
+
+        return true; //msg handled
+
     case Msg_PathReady:
 
       //clear any existing goals

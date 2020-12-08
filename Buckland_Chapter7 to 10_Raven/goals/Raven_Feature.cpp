@@ -96,7 +96,7 @@ double Raven_Feature::TotalWeaponStrength(Raven_Bot* pBot)
   return Tweaker + (1-Tweaker)*(NumSlugs + NumCartridges + NumRockets)/(MaxRoundsForShotgun + MaxRoundsForRailgun + MaxRoundsForRocketLauncher);
 }
 
-// 과제 3 추가
+// 과제 3 추가m
 double Raven_Feature::Defense(Raven_Bot* pBot)
 {
     return (double)pBot->Defense() / (double)pBot->MaxDefense();

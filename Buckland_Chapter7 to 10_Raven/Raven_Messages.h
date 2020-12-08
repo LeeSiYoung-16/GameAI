@@ -21,7 +21,9 @@ enum message_type
   Msg_OpenSesame,
   Msg_GunshotSound,
   Msg_UserHasRemovedBot,
-  Msg_TargetHit
+  Msg_TargetHit,
+
+  Msg_PartialPath       // Ãß°¡
 };
 
 //used for outputting debug info

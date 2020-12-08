@@ -285,7 +285,7 @@ int Raven_PathPlanner::CycleOnce()const
       Dispatcher->DispatchMsg(SEND_MSG_IMMEDIATELY,
           SENDER_ID_IRRELEVANT,
           m_pOwner->ID(),
-          Msg_PathReady,
+          Msg_PartialPath,
           pTrigger);
   }
 
