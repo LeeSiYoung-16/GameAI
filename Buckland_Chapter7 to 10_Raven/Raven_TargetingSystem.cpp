@@ -36,7 +36,7 @@ void Raven_TargetingSystem::Update()
       int targetDamage = m_pOwner->GetSensoryMem()->FindTargetDamage((*curBot));
 
       // Ãß°¡
-      if (damage > 0 && targetDamage > damage)
+      if (targetDamage > 0 && targetDamage > damage)
       {
           damage = targetDamage;
           m_pCurrentTarget = *curBot;
@@ -45,8 +45,7 @@ void Raven_TargetingSystem::Update()
       {
         ClosestDistSoFar = dist;
         m_pCurrentTarget = *curBot;
-      }
-     
+      }   
     }
   }
 }
