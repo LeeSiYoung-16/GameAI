@@ -61,8 +61,8 @@ public:
 template <class path_planner>
 inline void PathManager<path_planner>::UpdateSearches()
 {
-    int NumCyclesRemaining = m_iNumSearchCyclesPerUpdate;
-    //int NumCyclesRemaining = 3;
+    //int NumCyclesRemaining = m_iNumSearchCyclesPerUpdate;
+    int NumCyclesRemaining = 5;
 
   //iterate through the search requests until either all requests have been
   //fulfilled or there are no search cycles remaining for this update-step.

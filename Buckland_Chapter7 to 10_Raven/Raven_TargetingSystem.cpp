@@ -35,7 +35,7 @@ void Raven_TargetingSystem::Update()
       double dist = Vec2DDistanceSq((*curBot)->Pos(), m_pOwner->Pos());
       int targetDamage = m_pOwner->GetSensoryMem()->FindTargetDamage((*curBot));
 
-      // Ãß°¡
+      // Ãß°¡ 2017180010 ¹ÎÇý¿ø
       if (targetDamage > 0 && targetDamage > damage)
       {
           damage = targetDamage;
